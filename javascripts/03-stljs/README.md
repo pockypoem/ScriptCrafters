@@ -91,6 +91,37 @@ Array juga memiliki function yang digunakan untuk melakukan transformasi <br>
 * reduce() dari kiri ke kanan
 * reduceRight() dari kanan ke kiri
 
-[Function Lain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#instance_methods)
+[Function Lain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#instance_methods) <br>
 
 
+## Object
+* [Dokumentasi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+
+### Object Freeze & Seak
+* Secara default, object bisa diubah atau dihapus propertiesnya
+* Jika kita ingin mengubah sebuah object menjadi object yang tidak bisa diubah atau dihapus, kita bisa menggunakan beberapa static method:
+    * `Object.freeze()` digunakan untuk mengubah object menjadi object yang tidak bisa diubah value atau dihapus attributenya.
+    * `Object.seal()` digunakan untuk mengubah object menjadi object yang tidak bisa dihapus attributenya. Value masih bisa dirubah namun tidak bisa dihapus.
+* Baik freeze maupun seal, tidak bisa menambah data ke object.
+
+### Object Assign
+* Kadang kita ada kasus menggabungkan semua attribute dari sebuah object ke object lain
+* Hal ini bisa kita lakukan dengan menggunakan `Object.assign(target, source)`
+* Attribut yang sama yang ada pada target akan ditimpa dengan attribut milik source.
+
+### Object Property Name & Value
+* Object juga memiliki static method untuk mengambil semua properties names dan values
+* `Object.values()` digunakan untuk mengambil semua property value
+* `Object.getPropertyNames()` digunakan untuk mengambil semua properti name
+
+
+## JSON
+* Javascript Object Notation
+* merupakan data String yang bentuknya mirip dengan Javascript Object
+* Saat ini JSON banyak sekali digunakan untuk komunikasi antara Server dan Client
+* [JSON](https://www.json.org/json-en.html)
+* Javascript mendukung konversi data dari String JSON ke Object ataupun sebaliknya
+* `JSON.stringify()` digunakan untuk melakukan konversi dari Object ke String
+* `JSON.parse()` digunakan untuk melakukan konversi dari String ke Object
+* [Dokumentasi Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON)
