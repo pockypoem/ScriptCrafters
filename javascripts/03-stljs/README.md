@@ -319,3 +319,52 @@ Di Javascript, tipe data String memiliki instance method yang dapat memanfaatkan
 4. Metode Tambahan: `Reflect` menyediakan beberapa metode tambahan yang tidak ada dalam objek biasa. Beberapa contoh metode tersebut adalah `Reflect.has()`, `Reflect.ownKeys()`, `Reflect.construct()`, dan lain-lain. Metode-metode ini memberikan kemampuan tambahan untuk memanipulasi objek, melakukan operasi refleksi, dan melakukan tugas-tugas tertentu yang tidak dapat dilakukan dengan mudah menggunakan objek biasa.
 
 5. Kompatibilitas dengan Proxy: `Reflect` dirancang untuk bekerja dengan baik dengan objek Proxy. Banyak metode pada objek `Reflect digunakan dalam handler untuk memanipulasi perilaku proxy. Metode-metode tersebut memberikan kontrol lebih lanjut dan fleksibilitas dalam mengimplementasikan proxy.
+
+
+## Encode
+* Saat kita menulis URL, kadang kita ingin menambahkan informasi tambahan seperti query parameter misalnya
+* URL sendiri sudah memiliki standard encoding penulisan URL
+* Standard encoding ini dilakukan agar penulisan URL aman ketika diterima oleh server
+* Aman disini dalam artian informasi URL tidak berubah
+* Contoh paling sederhana, misal: walaupun kita bisa mengirim spasi dalam url, tapi disarankan untuk di encode agar nilai spasi tidak benar-benar terlihat seperti spasi pada URLnya
+
+### Contoh Masalah Jika Tidak Menggunakan Encode
+* Misal ada query parameter dengan nama data, lalu kita ingin mengirimkan nilai kesana
+* Misal nilainya adalah &eko=eko&, alhasil URL nya akan seperti berikut: http://contoh.com?data=&eko=eko&
+* URL diatas terlihat tidak ada masalah, tapi sebenarnya ketika diterima oleh server, parameter data bernilai kosong, kenapa? karena `&` dianggap sebagai pemisah antar parameter
+* Artinya tanda seperti `&` dan lain-lain perlu di encode, agar tidak terjadi kesalahan data yang kita kirim
+* [Video Penjelasan](https://dashboard.codepolitan.com/learn/courses/javascript-standard-libray/lessons/4498)
+
+### Encode Function
+| Function                          | Keterangan                                                |
+| --------------------------------- | --------------------------------------------------------- |
+| encodeURI(value)                  | Melakukan encode value, namun karakter yang dipesan di URl tidak akan diubah :,/?:@&=+$#               |
+| encodeURIComponent(value)         | Melakukan encode value semua karakter               |
+| decodeURI(encoded)                | Melakukan decode value hasil encodeURI()               |
+| decodeURIComponent(encoded)       | Melakukan decode value hasil encodeURIComponent()               |
+
+* decode = mengembalikan ke value aslinya
+* [Perbedaan URI, URL, dan URN](https://ids.ac.id/mengenal-url-uri-dan-urn-apa-perbedaannya/#:~:text=Perbedaan%20antara%20URI%20dan%20URL%20adalah%20URI%20dapat%20berupa%20nama,(https%3A%2F%2F).)
+
+## Base64
+* Base64 merupakan binary to text encoding, representasi binary data dalam format string
+* Base64 merupakan format text data yang aman untuk dikirimkan di web
+* Base64 merupakan encoding yang biasanya digunakan ketika perlu mengirim data dari client ke server
+* Karena encoding Base64 merupakan text, oleh karena itu sangat aman digunakan pada query param URL atau text body dalam form
+* [Dokumentasi Mozilla](https://developer.mozilla.org/en-US/docs/Glossary/Base64)
+* Base64 untuk encode dan decode bukan untuk enkripsi
+* [Perbedaan Enkripsi, Decode & Encode](https://blog.randisunarsa.web.id/?p=271)
+
+### Base64 Function
+Javascript memiliki function bawaan untuk melakukan encode Base64 atau decode base64 <br>
+| Function                          | Keterangan                                                |
+| --------------------------------- | --------------------------------------------------------- |
+| btoa(value)                       | Encode ke base64 dari value                               |
+| atob(value)                       | Decode dari base64 ke value                               |
+
+
+## Eval
+* merupakan function yang digunakan untuk mengeksekusi kode Javascript dari String
+* Fitur ini sangat menarik, namun perlu berhati-hati ketika menggunakannya
+* Jika sampai salah penggunaan, maka bisa jadi kita malah mengeksekusi kode program yang bisa menyebabkan masalah keamanan website kita
+* [Dokumentasi Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval)
