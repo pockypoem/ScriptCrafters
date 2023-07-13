@@ -77,6 +77,6 @@
     
     //? Global flag required when calling replaceAll with regex
     // console.info(string.replaceAll(/ek[aiueo]/ig, "keren")) -> ERROR
-    console.info(string.replaceAll(/ek[aiueo]/i, "keren")) // edo keren ado keren keren ejo emi elo keren
+    console.info(string.replaceAll(/ek[aiueo]/ig, "keren")) // edo keren ado keren keren ejo emi elo keren
     console.info(string.split(/e/ig)); // ['', 'do ', 'ko ado ', 'ki ', 'ka ', 'jo ', 'mi ', 'lo ', 'k', '']
 }
