@@ -222,7 +222,7 @@ Untuk membuat object Date, kita bisa menggunakan new Date(), dimana terdapat con
 
 ### Set Instance Method & Property
 | Method & Property                    | Keterangan                                   |
-| ---------------------------------    | -------------------------------------------- |
+| ------------------------------------ | -------------------------------------------- |
 | size                                 | Panjang Set                                  |
 | add(value)                           | Menambah data ke Set                         |
 | has(value)                           | Mengecek apakah Set memiliki value           |
@@ -239,3 +239,46 @@ Untuk membuat object Date, kita bisa menggunakan new Date(), dimana terdapat con
 * Kadang agak sulit membuat symbol harus selalu menggunakan variable
 * Pembuatan symbol juga bisa menggunakan static method `Symbol.for(key)`
 * Jika kita menggunakan key yang sama, Symbol yang sama akan selalu dikembalikan
+
+Jadi untuk key di Object tidak hanya menggunakan string, tapi bisa juga menggunakan symbol.
+
+
+## RegExp
+* merupakan implementasi dari regular expression di Javascript
+* Regular Expression merupakan fitur untuk mencari text dengan pola
+* Membuat regular expression di Javascript bisa dilakukan dengan dua cara, yaitu menggunakan literal notation atau membuat object RegExp
+* [Dokumentasi Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
+
+### RegExp Instance Method
+| Instance Method                      | Keterangan                                   |
+| ------------------------------------ | -------------------------------------------- |
+| exec(value) : result                 | Eksekusi regex, jika menemukan data sesuai pola, maka kembalikan result nya, jika tidak maka null                                  |
+| test(value) : boolean                | Eksekusi regex, jika menemukan data sesuai pola, maka return true, jika tidak maka false                                  |
+
+### RegExp Modifier
+RegExp memiliki modifier untuk mengubah sifat cara pencarian <br>
+
+| Modifier                    | Keterangan                                   |
+| --------------------------- | -------------------------------------------- |
+| i                           | Regex mejadi incase sensitive  (defaultnya regex itu case sensitive)                                |
+| g                           | Pencarian dilakukan secara global, secara default setelah menemukan data, pencarian akan berhenti                                  |
+| m                           | Multiline, pencarian dilakukan di tiap baris (enter)                                  |
+<br>
+
+### Fitur RegExp Lainnya
+
+* [Assersion: indikasi awal dan akhir teks](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Assertions)
+* [Character Classes: membedakan antara huruf dan angka](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Character_Classes)
+* [Group dan Range: melakukan grouping atau range huruf atau angka](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Groups_and_backreferences)
+* [Quantifiers: menentukan jumlah huruf atau angka](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Quantifiers)
+
+## Regular Expression di String
+Di Javascript, tipe data String memiliki instance method yang dapat memanfaatkan RegExp untuk melakukan pencarian <br>
+
+| String Method                     | Keterangan                                                |
+| --------------------------------- | --------------------------------------------------------- |
+| match(regex) : Array              | Mencari semua data yang sesuai dengan regex               |
+| search(regex) : index             | Mencari index data yang sesuai dengan regex               |
+| replace(regex, value)             | Mengubah data dengan value yang sesuai regex              |
+| replaceAll(regex, value)          | Mengubah semua data dengan value yang sesuai regex        |
+| split(regex) : Array              | Memotong string dengan regex                              |
