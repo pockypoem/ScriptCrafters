@@ -272,7 +272,7 @@ RegExp memiliki modifier untuk mengubah sifat cara pencarian <br>
 * [Group dan Range: melakukan grouping atau range huruf atau angka](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Groups_and_backreferences)
 * [Quantifiers: menentukan jumlah huruf atau angka](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Quantifiers)
 
-## Regular Expression di String
+### Regular Expression di String
 Di Javascript, tipe data String memiliki instance method yang dapat memanfaatkan RegExp untuk melakukan pencarian <br>
 
 | String Method                     | Keterangan                                                |
@@ -282,3 +282,40 @@ Di Javascript, tipe data String memiliki instance method yang dapat memanfaatkan
 | replace(regex, value)             | Mengubah data dengan value yang sesuai regex              |
 | replaceAll(regex, value)          | Mengubah semua data dengan value yang sesuai regex        |
 | split(regex) : Array              | Memotong string dengan regex                              |
+
+
+## Proxy
+* merupakan fitur yang bisa digunakan sebagai wakil sebuah data
+* Dengan menggunakan proxy, semua interaksi ke data akan selalu melalui Proxy terlebi dahulu
+* Dengan ini, kita bisa melakukan apapun sebelum interaksi dilakukan ke data yang dituju
+* [Dokumentasi Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+
+### Proxy Handler
+* Pembuatan Proxy perlu menggunakan handler, dimana dalam handler, kita bisa membuat function yang dinaman interceptor yang digunakan ketika mengambil data atau mengubah data ke target
+* Untuk membuat Proxy, kita bisa menggunakan `new Proxy(target, handler)`
+
+
+### Proxy dan Handler
+* Saat kita mengubah data proxy, secara otomatis data akan dikirim ke target melalui handler dengan memanggil `function set(target, property, value)`
+* Saat kita mengambil data proxy, secara otomatis data akan diambil dari target melalui handler dengan memanggil `function get(target, property)`
+* Artinya, jika kita ingin melakukan sesuatu sebelum dan setelahnya, bisa kita lakukan di handler
+
+
+## Reflect
+* Reflect merupakan class yang digunakan untuk mengeksekusi Javascript function
+* Reflect tidak memiliki constructor, dan cara penggunaan Reflect tidak dengan membuat object dengan new Reflect
+* Mirip seperti utility (seperti class Math)
+* Penggunaan Reflect adalah menggunakan banyak sekali static methodnya
+* [Dokumentasi Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
+
+### Perbedaan penggunaan Reflect dengan Object pada Javascript
+
+1. Pemanggilan Metode: Dalam objek biasa, Anda memanggil metode langsung dari objek tersebut. Misalnya, `obj.method()`. Namun, dengan Reflect, Anda menggunakan metode yang diberikan oleh Reflect sebagai fungsi utilitas. Misalnya, `Reflect.method(obj)`.
+
+2. Kembalian Nilai: Ketika menggunakan objek biasa, hasil kembalian dari metode biasanya bergantung pada implementasi masing-masing metode. Dalam `Reflect`, metode-metode umumnya mengembalikan nilai boolean yang menunjukkan berhasil atau gagalnya operasi yang dilakukan.
+
+3. Error Handling: Ketika menggunakan objek biasa, jika metode tidak ditemukan atau terjadi kesalahan, Anda akan mendapatkan kesalahan (error) pada waktu eksekusi (runtime error). Dalam `Reflect`, metode-metode umumnya mengembalikan nilai yang menunjukkan status operasi dan tidak menghasilkan kesalahan. Misalnya, `Reflect.get()` akan mengembalikan `undefined` jika properti tidak ditemukan.
+
+4. Metode Tambahan: `Reflect` menyediakan beberapa metode tambahan yang tidak ada dalam objek biasa. Beberapa contoh metode tersebut adalah `Reflect.has()`, `Reflect.ownKeys()`, `Reflect.construct()`, dan lain-lain. Metode-metode ini memberikan kemampuan tambahan untuk memanipulasi objek, melakukan operasi refleksi, dan melakukan tugas-tugas tertentu yang tidak dapat dilakukan dengan mudah menggunakan objek biasa.
+
+5. Kompatibilitas dengan Proxy: `Reflect` dirancang untuk bekerja dengan baik dengan objek Proxy. Banyak metode pada objek `Reflect digunakan dalam handler untuk memanipulasi perilaku proxy. Metode-metode tersebut memberikan kontrol lebih lanjut dan fleksibilitas dalam mengimplementasikan proxy.
