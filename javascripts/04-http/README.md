@@ -230,4 +230,8 @@ HTTP didesain menggunakan bahasa yang mudah dimengerti oleh bahasa manusia, sepe
 * Anchor merupakan representasi bookmark dalam sebuah halaman website
 * Misal jika dalam website terdapat banyak sekali bagian informasi, kita bisa menggunakan anchor sebagai bookmark ke tiap bagian informasi tersebut agar lebih mudah diakses.
 
-![Image Anchor](images/08-parameters.png)
+![Image Anchor](images/08-anchor.png)
+
+
+
+
