@@ -119,3 +119,115 @@ HTTP didesain menggunakan bahasa yang mudah dimengerti oleh bahasa manusia, sepe
 * Setelah Server memproses HTTP Request yang dikirim oleh Client
 * Server akan membalas dengan HTTP Response
 * HTTP Response biasanya berisikan data yang diminta oleh Client dalam HTTP Request
+
+
+## Browser Network Tool
+* Untuk lebih mempermudah melihat apa yang dilakukan di belakang Web Browser, biasanya Web Browser memiliki fitur Network Tool
+* Contohnya di browser seperti Google Chrome dan Firefox sudah memiliki Network Tool
+* Dengan Network Tool, kita bisa melihat semua detail HTTP Request dan HTTP Response yang dilakukan oleh Client dan Server
+
+### Tugas
+* Buka website [berikut](https://www.programmerzamannow.com/)
+* Lalu lihat informasi HTTP Request dan HTTP Response yang terjadi menggunakan Network Tool yang terdapat di Browser yang kita gunakan 
+
+
+## HTTP Request dan Response
+
+### HTTP Message
+* HTTP Request dan HTTP Response sebenarnya adalah sebuah HTTP Message
+* HTTP Message memiliki standarisasi format
+* Dengan demikian, jika kita ingin membuat Client dan Server sendiri, sebenarnya bisa kita lakukan, asal kita mengikuti standarisasi format HTTP Message
+<br>
+
+### ![Image HTTP Message untuk Request](images/01-httpmessageRequest.png) 
+<br>
+
+* bentuknya teks 
+* header isinya key dan value, contohnya: host itu isinya adalah domain
+* /login merupakan context path
+* URL itu gabungan antara host dengan context path
+* space berguna untuk memisahkan antara Header dengan Body
+* Body bisa berupa teks / video / gambar / audio
+
+### ![Image HTTP Message untuk Response](images/02-httpmessageResponse.png)
+<br>
+
+* kalau pada response langsung HTTP version dan status code pada start line
+* Setelah start line diresponse barulah header
+* Body bisa berupa teks / video / gambar / audio
+
+
+## HTTP Method
+* Dalam HTTP Request, hal yang pertama kita perlu tentukan adalah HTTP Method
+* HTTP Method mirip seperti kategori request
+* Ada banyak HTTP Method yang dapat kita gunakan ketika membuat HTTP Request, dan kita bisa sesuaikan dengan kebutuhan yang kita inginkan
+
+### ![HTTP Message](images/03-HTTPMessage.png)
+<br>
+
+* Kata pertama pada baris pertama (start line) seperti: `POST` itu adalah contoh HTTP Method
+
+### Jenis HTTP Method
+
+| HTTP Method                       | Keterangan                                                |
+| --------------------------------- | --------------------------------------------------------- |
+| GET                               | GET method digunakan untuk melakukan request data. REquest menggunakan GET hanya untuk menerima data, bukan untuk mengirim data                               |
+| HEAD                              | HEAD method digunakan sama seperti dengan GET, tapi tanpa membutuhkan response body (misal untuk melihat apakah ada data gambar atau tidak -> butuh request data tapi tidak butuh datanya)                              |
+| POST                              | POST method digunakan untuk mengirim data ke Server, biasanya POST digunakan untuk mengirim data baru sehingga biasanya memiliki request body                               |
+| PUT                               | PUT method digunakan untuk mengganti semua data yang terdapat di Server dengan data baru yang dikirim di Request (misal udah upload 1 gambar, tapi ingin ganti gambarnya (ditimpa), biasanya menggunakan PUT)                       |
+| DELETE                            | DELETE method digunakan untuk menghapus data                              |
+| PATCH                             | PATCH method digunakan untuk mengubah sebagian data  (PUT itu mengubah seluruh data, kalau PATCH hanya mengganti sebagian). Misalnya di web sudah punya nama depan, nama tengah, dan nama belakang. Kalau pada PUT maka akan menimpa semuanya, kalau PATCH hanya mengubah salah satu saja, contohnya: mengubah nama depan saja atau nama tengahnya saja                         |
+| OPTIONS                           | OPTIONS method digunakan untuk mendeskripsikan opsi komunikasi yang tersedia. Biasanya melakukan HTTP Method OPTIONS untuk bertanya ke server kira-kira ada opsi atau operasi komunikasi apa saja yang tersedia di server tersebut, apakah ada POST, GET, DELETE, dsb                         |
+| TRACE                             | TRACE method merupakan request method untuk debugging. Response TRACE method akan mengembalikan seluruh informasi yang dikirim oleh Client. Saat membuat web, sangat direkomentasikan untuk **tidak mengaktifkan TRACE method** ketika sudah live di production karena bisa disalahgunakan oleh orang lain.                              |
+
+
+## URL
+* URL singkatan dari Uniform Resource Locator
+* URL merupakan alamat dari sebuah resource di Web
+* URL wajib kita gunakan untuk menuju informasi resource yang akan kita tuju dalam Web
+* Tanpa URL, Client atau Server tidak akan mengerti informasi apa yang ingin kita cari
+
+### Anatomi URL
+* URL terdiri dari beberapa bagian
+* Beberapa bagian wajib ada, beberapa bagian tidak wajib ada
+* Berikut adalah contoh URL:
+    * https://www.programmerzamannow.com/
+    * https://www.programmerzamannow.com/premium-membership/
+    * https://www.programmerzamannow.com/?search=java
+
+### Schema
+* Bagian awal di URL adalah schema yang mengindikasikan protocol yang perlu digunakan oleh Client
+* Biasanya dalam URL website, schema protocol tersebut adalah http dan https
+
+![Image Schema](images/04-schema.png)
+
+### Authority
+* Selanjutnya, dipisahkan dengan tanda :// diikuti dengan authority, yang terdiri dari nama domain dan nomor port yang dipisah menggunakan titik dua
+* Biasanya dikenal dengan domain. Namun kenapa tidak disebut domain? karena dalam authority sebenarnya terdapat 2 bagian.
+* Nama domain nanti akan ditanyakan ke DNS untuk mendapatkan alamat IP nya
+* Namun kita juga bisa langsung menggunakan IP jika memang website tersebut tidak memiliki nama domain
+* Nomor port tidak wajib, tanpa nomor port, secara default bernilai 80 untuk http dan 443 untuk https
+
+![Image Authority](images/05-authority.png)
+
+### Path
+* Ada beberapa yang bilang bahwa ini adalah Context Path. (sama saja)
+* Path merupakan komponen yang tidak wajib
+* Path biasanya berisikan informasi menuju ke detail resource yang kita tuju
+* Path terlihat seperti kumpulan folder dan diakhiri dengan file yang ingin kita akses
+
+![Image Path](images/06-path.png)
+
+### Parameters
+* Dalam URL juga bisa terdapat informasi parameters, namun ini tidak wajib
+* Parameter dipisah oleh karakter `?` setelah Authority atau Path
+* Parameter merupakan informasi tambahan yang berisi key=value, jika ingin menambahkan lebih dari satu parameter, kita bisa tambahkan dengan menggunakan karakter `&`
+
+![Image Parameters](images/07-parameters.png)
+
+### Anchor
+* Achor merupakan bagian yang tidak wajib di URL
+* Anchor merupakan representasi bookmark dalam sebuah halaman website
+* Misal jika dalam website terdapat banyak sekali bagian informasi, kita bisa menggunakan anchor sebagai bookmark ke tiap bagian informasi tersebut agar lebih mudah diakses.
+
+![Image Anchor](images/08-parameters.png)
