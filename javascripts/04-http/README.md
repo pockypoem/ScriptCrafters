@@ -233,5 +233,149 @@ HTTP didesain menggunakan bahasa yang mudah dimengerti oleh bahasa manusia, sepe
 ![Image Anchor](images/08-anchor.png)
 
 
+## HTTP Header
+* HTTP Header merupakan informasi tambahan yang biasa dikirim di Request atau Response
+* HTTP Header biasanya digunakan agar informasi tidak harus dikirim melalui Request Body atau Response Body
+* HTTP Header berisi key : value, dan saat ini banyak sekali standarisasi nama key pada HTTP Header
+* [List of HTTP header fields](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields)
+
+![Image HTTP Message](images/09-http-message.png)
+
+### Contoh HTTP Header
 
 
+| HTTP Header                       | Keterangan                                                |
+| --------------------------------- | --------------------------------------------------------- |
+| Host                              | Authority pada URL (wajib sejak versi HTTP/1.1)           |
+| Content-Type                      | Tipe data dari HTTP Body                              |
+| User-Agent                        | Informasi user agent (seperti browser dan sistem operasi)                              |
+| Accept                            | Tipe data yang diterima oleh Client                              |
+| Authorization                     | Credential untuk autentikasi (misal username + password)                              |
+
+
+## HTTP Status
+* HTTP Status merupakan kode HTTP Response yang mengindikasikan apakah sebuah request yang diterima Server sukses, gagal atau ada hal lain yang harus diketahui oleh Client
+* HTTP status diklasifikasikan dalam lima grup yaitu:
+    * Informational Response (100 - 199)
+    * Successful Response (200 - 299)
+    * Redirect (300 - 399)
+    * Client Error (400 - 499)
+    * Server Error (500 - 599)
+* [List of HTTP Status Codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
+### HTTP Response
+![HTTP Response image](images/10-http-response.png)
+
+### Informational Response (100 - 199)
+* Informational Response mengindikasi bahwa request telah diterima dan dimengerti
+* Namun client diminta untuk menunggu tahapan akhir response
+* Pada kenyataannya, informational response sangat jarang sekali digunakan
+* [Dokumentasi](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#information_responses)
+
+### Successful Response (200 - 299)
+* Successful Response merupakan kode yang mengindikasi bahwa request yang dikirim oleh client telah diterima, dimengerti, dan sukses diproses oleh Server
+* [Dokumentasi](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#successful_responses)
+
+### Redirect (300 - 399)
+* Redirect status code mengindikasikan bahwa client harus melakukan aksi selanjutnya untuk menyelesaikan request
+* Biasanya redirect status code digunakan ketika lokasi sebuah resource berubah, sehingga Server meminta Client untuk berpindah ke URL lain
+* [Dokumentasi](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#redirection_messages)
+
+### Client Error (400 - 499)
+* Client error status code merupakan indikasi bahwa request yang dikirim oleh Client tidak diterima oleh Server dikarenakan request yang dikirim dianggap tidak valid
+* Contohnya client mengirim body yang salah, client melakukan request ke Server tanpa autentikasi di resource yang mewajibkan autentikasi, dan lain-lain.
+* [Dokumentasi](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses)
+
+### Server Error (500 - 599)
+* Server error status code mengindikasikan bahwa terjadi kesalahan di Server
+* Biasanya ini terjadi ketika ada masalah di Server, seperti misalnya tidak bisa terkoneksi ke basis data, terdapat jaringan error di server, dan lain-lain
+* [Dokumentasi](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses)
+
+
+## HTTP Body
+* HTTP Body merupakan data yang bisa dikirim di HTTP Request, atau data yang diterima dari HTTP Response 
+* Artinya client bisa mengirim data ke server menggunakan HTTP Body, bergitu juga sebaliknya
+* Server bisa memberikan body di response menggunakan HTTP Body
+
+![HTTP Response Image](images/10-http-response.png)
+
+### Content-Type
+* HTTP Body erat kaitannya dengan Header key Content-Type
+* Biasanya agar client dan server mudah mengerti isi HTTP Body, HTTP Message akan memiliki Header Content-Type, yang berisi informasi tipe data HTTP Body
+* HTTP Body bisa berisikan teks (html, javascript, css, json) atau binary (image, video, audio)
+* Data Content-Type sudah memiliki standarisasi, misalnya bisa kita lihat pada [link berikut](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
+
+
+## Redirect
+* Seperti yang sudah dijelaskan pada materi HTTP Status, untuk memaksa client melakukan redirect ke halaman lain, kita bisa menggunakan http redirect status code (300 - 399)
+* Lantas pertanyaannya, dari mana client tahu, harus melakukan redirect ke URL mana?
+* Oleh karena itu, biasanya response HTTP Status redirect, selalu dibarengi dengan informasi URL redirectnya, dan itu disimpan pada header Location
+
+### Contoh HTTP Response Redirect
+![Image HTTP Response Redirect](images/11-http-redirect.png)
+* Contoh pertama: bila redirect dalam domain yg sama
+* Contoh kedua: bila redirect dalam domain berbeda
+
+
+## HTTP Cookie
+
+### Stateless
+* HTTP didesain stateless, artinya tiap request yang dilakukan, dia tidak tahu request sebelumnya atau selanjutnya yang akan dilakukan
+* Lantas pertanyaanya: Bagaimana Server tahu kalau Client sudah login sebelum mengakses halaman tertentu?
+* Hal ini, biasanya menggunakan fitur HTTP Cookie
+
+### HTTP Cookie
+* HTTP Cookie merupakan informasi yang diberikan oleh server, dan client secara otomatis akan menyimpan data tersebut, contohnya di Web Browser
+* Ketika Web Browser melakukan request selanjutnya, maka Web Browser akan menyisipkan cookie yang sudah diterima di request sebelumnya
+* Dari cookie tersebut, Server bisa mengetahui apakah request tersebut merupakan request client yang sudah login atau belum
+
+### Contoh Penggunaan HTTP Cookie
+![Diagram HTTP Cookie](images/12-useof-http-cookie.png)
+
+### Cookie di HTTP Response
+* Informasi cookie yang diberikan dari Server, ditempatkan pada Header dengan value Set-Cookie
+* Cookie bisa lebih dari satu, jika Server memberikan lebih dari satu cookie, bisa menggunakan beberapa key Set-Cookie di Header
+
+### Contoh Cookie di HTTP Response
+![Example Image](images/13-cookie-http-response.png)
+* Perlu validasi juga karena cookie dari web browser dapat diubah-ubah
+
+### Cookie di HTTP Request
+* Setelah cookie dari HTTP Response diterima oleh Web Browser, maka akan disimpan di Web Browser
+* Selanjutnya HTTP Request akan mengirim cookie di tiap request, dimana cookie yang dikirim bisa menggunakan Header dengan nama Cookie
+* Berbeda dengan HTTP Response, untuk HTTP Request, Cookie harus digabung di satu header jika lebih dari satu Cookie
+
+### Contoh Cookie di HTTP Request
+![Example Image](images/14-cookie-http-request.png)
+
+### Cookie Attributes
+* Cookie memiliki attribute yang bisa ditambahkan ketika membuat cookie di HTTP Response
+* Seperti masa berlaku cookie, apakah harus https, apakah tidak boleh diakses via script, dan lain-lain
+* [Dokumentasi](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)
+
+
+## HTTP Caching
+* HTTP memiliki fitur yang bernama caching
+* Caching adalah menyimpan data di client sampai batas waktu yang sudah ditentukan, sehingga jika client ingin melakukan request resource yang sama, cukup ambil resource nya di client, tanpa harus meminta ulang ke server
+* HTTP Caching sangat cocok dilakukan untuk resource file static yang jarang berubah, seperti file, gambar, audio, video, dan lain-lain
+
+### Diagram HTTP Caching
+![Gambar Diagram](images/15-diagram-http-caching.png)
+* cache info = apakah informasi (response) ini boleh disimpan di browser? kalau boleh, amannya disimpan berapa lama?
+
+### Header Cache Control
+* Server ketika meminta agar client melakukan caching, maka HTTP Response perlu menambahkan informasi Cache-Control di Header
+* Cache-Control berisi informasi seberapa lama client bisa menyimpan data response tersebut, sehingga tidak perlu meminta ulang ke server
+* [Dokumentasi](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control)
+* cache-control: public, artinya dapat diakses sebelum atau sesudah login
+
+
+## Teknologi Lainnya
+* Server-Sent Event (berjalan di HTTP)
+* WebSocket (improvement HTTP)
+* Cross-Origin Resource Sharing (improvement HTTP)
+* RESTful API 
+* OAuth (standarisasi untuk autentikasi dan authorization)
+
+### Perbedaan Autentikasi dan Otorisasi
+Otentikasi adalah proses validasi identitas yang dilakukan dengan membandingkan data user yang dikirim, dengan data yang terdapat dalam database. Sedangkan otorisasi merupakan proses pemberian kuasa kepada user yang telah tervalidasi dengan tepat.
