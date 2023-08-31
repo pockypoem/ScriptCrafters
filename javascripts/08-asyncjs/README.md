@@ -115,6 +115,7 @@ Ada banyak method Async yang terdapat di Javascript, yang akan kita bahas kali i
 * Hookbin adalah aplikasi yang bisa digunakan untuk menerima request HTTP dan menyimpan datanya, dengan ini kita bisa menggunakan Hookbin untuk melihat detail dari data AJAX yang kita kirim
 * [Link Website](https://hookbin.com)
 * [Alternatif](https://pipedream.com/@jeremyascornelis/requestbin-p_ezCPq52/inspect)
+* [Alternatif 2](https://beeceptor.com/console/pockypoemjsasync)
 
 
 ## Mengirim Data dengan AJAX
