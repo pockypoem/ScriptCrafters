@@ -150,3 +150,15 @@ Sebenarnya ada cara yang lebih mudah, yaitu dengan **typescript compiler**
 * Pada kasus kita memang ingin membuat tipe data yang bebas seperti di Javascript, kita bisa gunakan tipe data Any
 * Tipe data Any tersebut menjadikan Typescript tidak melakukan pengecekan apapun terhadap akses terhadap data tersebut
 * File: tests/any.test.ts
+
+
+## Union Type
+* Seperti yang sudah kita tahu, Javascript sebenarnya bisa menyimpan berbagai jenis tipe data di variabel yang sama
+* Namun di Typescript, hal itu dilarang karena praktek yang buruk
+* Pada kasus jika kita ingin membuat variabel yang bisa berubah bentuk tipe data, kita bisa memberi tahunya menggunakan union type
+* Secara otomatis Typescript akan membolehkan kita mengubah tipe data, namun sesuai yang sudah ditentukan di union type nya
+* file: tests/union.test.ts
+
+### Menggunakan Union Type
+* Saat kita membuat Union Type, kita perlu berhati-hati ketika memanggil method terhadap variabel tersebut
+* Hal ini karena tipe datanya bisa berubah, oleh karena itu ada baiknya kita melakukan pengecekan tipe data terlebih dahulu menggunakan `typeof`
