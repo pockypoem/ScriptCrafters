@@ -347,3 +347,66 @@ console.info(seller);
 
 
 ## Function Overloading
+* Function Overloading adalah kemampuan untuk membuat Function dengan nama yang sama, namun dengan parameter input yang berbeda
+* Di Javascript, membuat satu Function dengan input data yang berbeda dan output yang bisa menghasilkan data yang berbeda sudah biasa
+* Namun hal ini kadang bisa membuat sebuah Function tidak aman, karena bisa menghasilkan berbeda-beda tipe data
+* Typescript memberikan kemampuan Function Overloading, agar pembuatan Function seperti ini lebih aman dilakukan
+* file: tests/function.test.ts
+
+## Function Sebagai Parameter
+* Sama seperti di Javascript, di Typescript juga kita bisa gunakan Function sebagai parameter
+* Hal ini sudah sering kita lakukan, biasanya ketika memanggil function yang membutuhkan callback function lainnya
+* Pada Typescript parameter yang berupa function, perlu kita beri tahu bahwa parameter tersebut adalah function
+* Kita bisa gunakan Function Interface, atau bisa langsung sebutkan pada parameter nya, jumlah parameter, dan return value function yang dibutuhkan
+* file: tests/function.test.ts
+
+
+## If Statement
+* Sama seperti di Javascript, di Typescript juga kita bisa melakukan if statement
+* If statement di Typescript sama seperti If statement di Javascript
+* file: tests/if.test.ts
+
+
+## Ternary Operator
+* Ternary Operator yang dilakukan di Javascript juga bisa dilakukan di Typescript
+* file: tests/if.test.ts
+
+
+## Switch Statement
+* Switch Statement di Typescript sama seperti di Javascript
+* file: tests/if.test.ts
+
+
+## For Loop
+* Perulangan For di Typescript sama seperti perulangan For di Javascript
+* Typescript mendukung semua for loop seperti for loop biasa, for in, dan for of
+* file: tests/loop.test.ts
+
+
+## While Loop
+* Typescript juga mendukung perulangan While Loop seperti di Javascript
+* file: tests/loop.test.ts
+
+
+## Do While Loop
+* Typescript juga mendukung perulangan menggunakan Do While Loop
+* file: tests/loop.test.ts
+
+
+## Break dan Continue
+* Seperti di Javascript, pada perulangan While atau Do While, kita sering menggunakan kata kunci `break` dan `continue`
+* Hal ini juga bisa dilakukan di Typescript
+* file: tests/loop.test.ts
+
+
+## Javascript Feature (Kompatibilitas antara JS dan TS)
+* Semua fitur yang pernah kita bahas di kelas Javascript, bisa dilakukan di Typescript
+* Seperti Operator Matematika, Perbandingan, Logika, String Template, Optional Chaining, With Statement, Default Parameter, Function Generator, Getter Setter, Destructuring, Modules, Standard Library, dan lain-lain
+* Yang membedakan adalah, pada fitur Typescript karena Strongly Type, kita harus menentukan tipe data dari tiap variabel dan parameter
+* Pada kasus jika kita ingin seperti di Javascript, dimana variabel atau parameter bisa menggunakan tipe data apapun, maka kita harus menggunakan tipe data `Any` di Typescript
+
+
+## Materi Selanjutnya
+* Typescript Object Oriented Programming
+* Typescript Generic
+* Typescript Decorator
